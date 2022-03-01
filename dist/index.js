@@ -11293,7 +11293,7 @@ const github_1 = __nccwpck_require__(5438);
 const core_1 = __nccwpck_require__(2186);
 // TODO We may want to make these configurable
 const RETRY_MAX = 30;
-const RETRY_DELAY = 60000;
+const RETRY_DELAY = 90000;
 // check that the context is indeed for a PR
 function isPR(pr) {
     return !!pr;

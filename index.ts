@@ -9,7 +9,7 @@ type PR = components['schemas']['pull-request-simple'];
 
 // TODO We may want to make these configurable
 const RETRY_MAX = 30;
-const RETRY_DELAY = 60_000;
+const RETRY_DELAY = 90_000;
 
 // check that the context is indeed for a PR
 function isPR (pr: unknown): pr is PR {
