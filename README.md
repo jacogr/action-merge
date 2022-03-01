@@ -18,6 +18,6 @@ jobs:
         with:
           checks: lint,build,test
           labels: automerge
-		  strategy: squash
+          strategy: squash
           token: ${{ secrets.GITHUB_TOKEN }}
 ```
