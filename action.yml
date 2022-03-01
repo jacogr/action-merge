@@ -1,0 +1,19 @@
+name: 'Auto merge'
+description: 'Automatically merge pull requests'
+inputs:
+  checks:
+    description: 'A list of checks that should be successful'
+    required: true
+  labels:
+    description: 'A list of labels this should apply to'
+    required: true
+  strategy:
+    required: false
+    description: 'Merge strategy'
+    default: 'merge'
+  token:
+    description: 'The GITHUB_TOKEN secret'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

@@ -1,0 +1,21 @@
+{
+  "name": "action-approve",
+  "version": "1.0.0",
+  "description": "Github action to auto-approve PRs based on matching authors and labels",
+  "main": "dist/index.js",
+  "author": "Jaco <jacogr@gmail.com>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "ncc build index.ts -o dist"
+  },
+  "dependencies": {
+    "@actions/core": "1.5.0",
+    "@actions/github": "5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@vercel/ncc": "^0.33.3",
+    "typescript": "^4.5.5"
+  },
+  "packageManager": "yarn@3.2.0"
+}
