@@ -14,9 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: jacogr/action-approve@master
+      - uses: jacogr/action-merge@master
         with:
           checks: lint,build,test
           labels: automerge
+		  strategy: squash
           token: ${{ secrets.GITHUB_TOKEN }}
 ```
