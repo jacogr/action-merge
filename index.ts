@@ -86,12 +86,22 @@ async function main () {
 				conclusion === 'success'
 			).length === checks.length
 		) {
-			// merge (we may want to leave comments in the future as well)
-			return client.rest.pulls.merge({
+			// get the current reviewers
+			const { data: reviews } = await client.rest.pulls.listReviews({
 				...context.repo,
 				pull_number: pr.number,
-				merge_method: strategy
-			});;
+			});
+
+			// if there are reviews, we can attempt a merge
+			// TODO: Check against a list of approved reviewers?
+			if (reviews.filter(({ user }) => !!user).length !== 0) {
+				// merge (we may want to leave comments in the future as well)
+				return client.rest.pulls.merge({
+					...context.repo,
+					pull_number: pr.number,
+					merge_method: strategy
+				});;
+			}
 		}
 
 		// while we have retries remaining, wait a bit...

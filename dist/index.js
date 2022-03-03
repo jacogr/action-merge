@@ -11349,9 +11349,15 @@ function main() {
             if (checkData.check_runs.filter(({ conclusion, name, status }) => checks.includes(name) &&
                 status === 'completed' &&
                 conclusion === 'success').length === checks.length) {
-                // merge (we may want to leave comments in the future as well)
-                return client.rest.pulls.merge(Object.assign(Object.assign({}, github_1.context.repo), { pull_number: pr.number, merge_method: strategy }));
-                ;
+                // get the current reviewers
+                const { data: reviews } = yield client.rest.pulls.listReviews(Object.assign(Object.assign({}, github_1.context.repo), { pull_number: pr.number }));
+                // if there are reviews, we can attempt a merge
+                // TODO: Check against a list of approved reviewers?
+                if (reviews.filter(({ user }) => !!user).length !== 0) {
+                    // merge (we may want to leave comments in the future as well)
+                    return client.rest.pulls.merge(Object.assign(Object.assign({}, github_1.context.repo), { pull_number: pr.number, merge_method: strategy }));
+                    ;
+                }
             }
             // while we have retries remaining, wait a bit...
             if (--retries) {
